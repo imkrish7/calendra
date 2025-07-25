@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1753375664517,
+      "tag": "0000_careful_crystal",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1753423361091,
+      "tag": "0001_salty_roland_deschain",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1753433082942,
+      "tag": "0002_magenta_reaper",
+      "breakpoints": true
+    }
+  ]
+}

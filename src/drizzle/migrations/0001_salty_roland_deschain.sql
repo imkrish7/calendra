@@ -1,0 +1,1 @@
+ALTER TABLE "schedulAvailablities" ADD COLUMN "createdAt" timestamp DEFAULT now() NOT NULL;
