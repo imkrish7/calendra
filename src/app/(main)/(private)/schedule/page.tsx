@@ -17,7 +17,7 @@ const SchedulePage = async () => {
                     <CardTitle>Schedule</CardTitle> {/* Display title for the page */}
                 </CardHeader>
                 <CardContent>
-                    <ScheduleForm schedule={schedule} /> 
+                    <ScheduleForm schedule={scheduls} /> 
                     {/* Render the ScheduleForm component with the fetched schedule */}
                 </CardContent>
             </Card>)

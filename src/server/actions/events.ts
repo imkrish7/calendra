@@ -11,6 +11,7 @@ import { z } from 'zod'
 
 
 type EventRow = typeof EventTable.$inferSelect
+export type PublicEvent = Omit<EventRow, 'isActive'> & {isActive: true}
 
 export async function createEvent(
     unsafeData: z.infer<typeof eventFormSchema>
@@ -136,10 +137,27 @@ export async function getEvent(userId: string, eventId: string): Promise<EventRo
             where: ({id, clerkUserId}, {eq, and})=> and(eq(id, eventId), eq(clerkUserId, userId))
         })
 
-        return event ?? undefined
+        return event
 
     } catch (error) {
         console.log(error);
         throw new Error("Error while updating event")
     }
+}
+
+export async function getPublicEvents(clerkUserId: string): Promise<PublicEvent[]> {
+
+    try {
+        const events = await db.query.EventTable.findMany({
+            where: ({ clerkUserId: userId, isActive }, { eq, and }) => and(eq(userId, clerkUserId), eq(isActive, true)),
+            orderBy: ({name}, {asc, sql}) => asc(sql`lower(${name})`)
+        })
+
+        return events as PublicEvent[]
+        
+    } catch (error) {
+        console.error(error);
+        throw new Error("Error while fetching public event")
+    }
+    
 }
